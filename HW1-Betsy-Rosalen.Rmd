@@ -1,0 +1,128 @@
+---
+title: "Betsy Rosalen HW 1"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# HW 1
+
+#### Question 1
+
+Simplify the following expression.  Write the solution using rational exponents.
+
+$$\left(\frac{64x \cdot y^{-2}}{x^{-2} \cdot y}\right)^\frac{-1}{2}$$
+#### Question 2
+
+If $f(x)  = \sqrt{x + 5}$ and $g(x) = \frac{3}{x}$ , find  $f(x) \cdot g(x)$.
+
+
+
+#### Question 3
+Find the break-even point(s) for the revenue and cost functions below.
+$$R(x) =	24.2x - 0.2x^2$$
+$$C(x)	=	13x + 147$$
+
+
+#### Question 4
+Find the derivative for the following function.
+$$y = 9x^{8.2}$$
+
+
+#### Question 5
+Find the derivative for $f(x) = -4x^5 - 3x^4 - 4x^3 - 3$.  
+
+#### Question 6
+A pole that is 4264 feet long is leaning against a building.  The bottom of the pole is moving away from the wall at a rate of 2 ft./sec.  How fast is the top of the pole moving down the wall when the top is 3480 feet off the ground?
+
+#### Question 7
+Use the Product Rule or Quotient Rule to find the derivative.
+$$f(x) = \frac{3x^8 - x^5}{2x^8 + 2}$$
+
+#### Question 8
+Consider the function:
+$$f(x) = 4x + 25x^{-1}$$
+**Step 1.** Find the critical values of the function. 
+
+**Step 2.** Use the First Derivative Test to find any local extrema.  Write any local extrema as an ordered pair. 
+
+#### Question 9
+Evaluate $\frac{dy}{dx}$ at $x = 1$ for the function below.
+$$y = -9u^2 + 7u + 4 \text{ where } u = -3x^3  + 3x + 6$$
+
+
+
+#### Question 10
+Consider the following function:
+$$f(x) = (x + 5)(x + 4)^2$$
+
+**Step 1.** Determine $f'(x)$ and $f''(x)$ .  
+
+
+**Step 2.** Determine where the function is increasing and decreasing.  Write your answers in interval notation. 
+
+
+**Step 3.** Determine where the function is concave up and concave down.  Write your answers in interval notation. 
+
+
+**Step 4.** Find the x-values of any local minima, maxima, and inflection points.  
+
+
+
+#### Question 11
+Consider the function:
+$$f(x) = -7x^2 - 84x - 140$$
+
+**Step 1.** Find the second derivative of the given function. 
+
+
+**Step 2.** Use the Second Derivative Test to locate any local maximum or minimum points in the graph of the given function.  Express your answer(s) as ordered pairs. 
+
+
+
+#### Question 12
+
+
+
+#### Question 13
+
+
+
+#### Question 14
+
+
+
+#### Question 15
+
+
+
+#### Question 16
+
+
+
+#### Question 17
+
+
+
+#### Question 18
+
+
+
+#### Question 19
+
+
+
+#### Question 20
+
+
+
+#### Question 21
+
+
+
+#### Question 22
+
+
+
