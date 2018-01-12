@@ -14,6 +14,9 @@ knitr::opts_chunk$set(echo = TRUE)
 Simplify the following expression.  Write the solution using rational exponents.
 
 $$\left(\frac{64x \cdot y^{-2}}{x^{-2} \cdot y}\right)^\frac{-1}{2}$$
+
+
+
 #### Question 2
 
 If $f(x)  = \sqrt{x + 5}$ and $g(x) = \frac{3}{x}$ , find  $f(x) \cdot g(x)$.
@@ -83,46 +86,45 @@ $$f(x) = -7x^2 - 84x - 140$$
 
 
 #### Question 12
-
+A beauty supply store expects to sell 100 flat irons during the next year.  It costs \$1.20 to store one flat iron for one year.  There is a fixed cost of \$15  for each order.  Find the lot size and the number of orders per year that will minimize inventory costs. 
 
 
 #### Question 13
+Find the derivative of the given expression.
+$$y = \frac{18x}{ln(x^4)}$$
 
 
 
 #### Question 14
+Consider the following function:
+$$f(x) = -5x^3 e^x$$
+
+**Step 1.** Find the first derivative of the above function. 
+
+
+**Step 2.** Find the second derivative of the above function. 
 
 
 
 #### Question 15
+Evaluate the definite integral below.  Write your answer in exact form or rounded to two decimal places.
+	
+$$\int_{-3}^{1} \left(8\sqrt[3]{(8x + 5)^2}\right) dx$$
 
 
 
 #### Question 16
+Solve the differential equation given below.
+$$\frac{dy}{dx} = -4(-3 - y)$$
 
 
 
 #### Question 17
-
+The marginal cost of a product is given by $238 + \frac{298}{\sqrt x}$ dollars per unit, where $x$ is the number of units produced. The current level of production is 137 units weekly.  If the level of production is increased to 232 units weekly, find the increase in the total costs.  Round your answer to the nearest cent.
 
 
 #### Question 18
-
-
-
-#### Question 19
-
-
-
-#### Question 20
-
-
-
-#### Question 21
-
-
-
-#### Question 22
-
+Find the Taylor polynomial of degree 5 near $x = 1$  for the following function.
+$$y = \sqrt{4x - 3}$$ 
 
 
