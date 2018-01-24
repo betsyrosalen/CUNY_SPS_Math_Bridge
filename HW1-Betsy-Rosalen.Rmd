@@ -1,14 +1,20 @@
 ---
 title: "Betsy Rosalen HW 1"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+# Load Packages
+library(mosaic)
+library(Deriv)
+library(rootSolve)
 ```
 
 # HW 1
-________________________________________________________________________________________________________
+________________________________________________________________________________
 ## Question 1
 
 Simplify the following expression.  Write the solution using rational exponents.
@@ -23,7 +29,6 @@ $$(\frac{1}{8})x^{\frac{-3}{2}} \cdot y^{\frac{3}{2}} $$
 ```{r simplify}
 # Not sure what I am doing wrong here...  
 # Should come out like above...
-library(Deriv)
 F1 <- function(x){
   {{64*x * {y^-2}}/{x^{-2} * y}}^{-1/2}
 }
@@ -32,14 +37,14 @@ Simplify(F1)
 #### Why does the function above return the equation below?
 $$\frac{1}{\sqrt{\frac{64 x y^{-2}}{\frac{y}{x^2}}}}$$
 
-________________________________________________________________________________________________________
+________________________________________________________________________________
 ## Question 2
 
 If $f(x)  = \sqrt{x + 5}$ and $g(x) = \frac{3}{x}$ , find  $f(x) \cdot g(x)$.
 
 $$f(x) \cdot g(x) = \sqrt{x + 5} \cdot \frac{3}{x} = \frac{3\sqrt{x + 5}}{x}$$
 
-________________________________________________________________________________________________________
+________________________________________________________________________________
 ## Question 3
 Find the break-even point(s) for the revenue and cost functions below.
 $$R(x) =	24.2x - 0.2x^2$$
@@ -58,7 +63,7 @@ B
 
 #### There are two break even points at x = 21 and x = 35.
 
-________________________________________________________________________________________________________
+________________________________________________________________________________
 ## Question 4
 Find the derivative for the following function.
 $$y = 9x^{8.2}$$
@@ -70,30 +75,29 @@ Y1 <- function(x)9 * x^8.2
 Deriv(Y1)
 ```
 
-________________________________________________________________________________________________________
+________________________________________________________________________________
 ## Question 5
 Find the derivative for $f(x) = -4x^5 - 3x^4 - 4x^3 - 3$. 
 
-The answer should be:
 $$f'(x) = -20x^4 - 12x^3 - 12x^2$$
-Not sure why this doesn't work!  
+
 ```{r}
-# This doesn't work.  Not sure why!
 Y2=function(x)(-4*x^5)-(3*x^4)-(4*x^3)-3
 Deriv(Y2)
 ```
 
 ```{r}
-# your code works just fine...
-#Addition rule, dx(f)+dx(g)
-myf2=function(x)3*x+(3*x^2+1)
-Deriv(myf2)
-# ...until I add a third expression...
-myf2=function(x)3*x+(3*x^2+1)+(4*x^3)
-Deriv(myf2)
+#Double check that they match...
+myDeriv <- function(x){-20*x^4 - 12*x^3 - 12*x^2}
+  
+RDeriv <- function (x){-(x^2 * (3 * (4 + x * (3 + 4 * x)) + x * (3 + 8 * x)))}
+myDeriv(4)
+RDeriv(4)
+myDeriv(10)
+RDeriv(10)
 ```
 
-________________________________________________________________________________________________________
+________________________________________________________________________________
 ## Question 6
 A pole that is 4264 feet long is leaning against a building.  The bottom of the pole is moving away from the wall at a rate of 2 ft./sec.  How fast is the top of the pole moving down the wall when the top is 3480 feet off the ground?
 
@@ -108,11 +112,14 @@ sqrt(4264^2 - 3480^2)
 
 the change in $x$ with respect to time = $\frac{dx}{dt} = 2 ft/sec$
 
-$$\frac{dx}{dt}(x^2 + y^2) = \frac{dx}{dt}(4264^2)$$
+$$\frac{d}{dt}(x^2 + y^2) = \frac{d}{dt}(4264^2)$$
 $$2x \frac{dx}{dt} + 2y \frac{dy}{dt} = 0$$
+Plug in known values for $x$, $y$, and $dx/dt$
+
 $$2(2464)\cdot2 + 2(3480)\frac{dy}{dt} = 0$$
 
 ```{r}
+# Calculate dy/dt
 dydt <- (-2*2464*2)/(2*3480)
 dydt
 ```
@@ -120,7 +127,7 @@ $$\frac{dy}{dt} = -1.416092$$
 
 #### The top of the pole is moving at 1.416092 ft/sec down the wall when the top is 3480 feet off the ground.
 
-________________________________________________________________________________________________________
+________________________________________________________________________________
 ## Question 7
 Use the Product Rule or Quotient Rule to find the derivative.
 $$f(x) = \frac{3x^8 - x^5}{2x^8 + 2}$$
@@ -128,14 +135,26 @@ $$f(x) = \frac{3x^8 - x^5}{2x^8 + 2}$$
 $$f' = \frac{(24x^7 - 5x^4)(2x^8 + 2) - (3x^8 - x^5)(16x^7)}{(2x^8 + 2)^2}$$
 
 ```{r}
-# Quotient rule f/g, (f'g-g'f)/g^2
-myf6=function(x){
-  {(24*x^7 - 5*x^4)*(2*x^8 + 2) - (3*x^8 - x^5)*(16*x^7)}/{(2*x^8 + 2)^2}
+# Calculate derivative with R
+F14 <- function(x){
+  {{3*x^8 - x^5}/{2*x^8 + 2}}
   }
-Deriv(myf6)
+RDeriv = Deriv(F14)
 ```
 
-________________________________________________________________________________________________________
+```{r}
+# Double check that they match...
+myDeriv <- function(x){
+  {(24*x^7 - 5*x^4)*(2*x^8 + 2) - (3*x^8 - x^5)*(16*x^7)}/{(2*x^8 + 2)^2}
+}
+
+myDeriv(4)
+RDeriv(4)
+myDeriv(10)
+RDeriv(10)
+```
+
+________________________________________________________________________________
 ## Question 8
 Consider the function:
 $$f(x) = 4x + 25x^{-1}$$
@@ -167,38 +186,48 @@ so $f(x)$ has critical points at $\pm 2.5$ and at $x=0$
 **Step 2.** Use the First Derivative Test to find any local extrema.  Write any local extrema as an ordered pair. 
 
 ```{r}
+# First Derivative Test
+# Get Y values to the right and left of all citical values
 F3 <- function(x)4 - 25/x^2
 F3(-3)
 F3(-1)
 F3(1)
 F3(3)
-F3(-2.5)
-F3(2.5)
 ```
 
-$f'(x)$ changes from positive to negative at x = -2.5, so $f$ has a local maximum at (-2.5, 0)
+```{r}
+# Get Y values at critical points where y changes sign
+F2(-2.5)
+F2(2.5)
+```
 
-$f'(x)$ changes from negative to positive at x = 2.5, so $f$ has a local minimum at (2.5, 0)
+
+$f'(x)$ changes from positive to negative at $x = -2.5$, so $f$ has a local maximum at (-2.5, -20)
+
+$f'(x)$ changes from negative to positive at $x = 2.5$, so $f$ has a local minimum at (2.5, 20)
+
+$f'(x)$ does not change sign at $x = 0$, so $f$ has no local extrema at that point.
 
 ```{r message=FALSE}
-library(mosaic)
-library(Deriv)
-library(rootSolve)
+# Double Check
 func=function(x){4*x + 25*x^(-1)}
 s=seq(-5,5,by=.1)
 a=func(s)
 datapoints=cbind(s,a)
-plot(datapoints, type="l", main="Find extrema between -5 and 5")
+plot(datapoints, type="l", main="F(x) between -5 and 5")
 min(a) # -250.4 (shouldn't this be negative infinity?)
 max(a) # Infinity
 first=Deriv(func)
-extrema=uniroot.all(first,c(-5,5))
-extrema # -2.5  2.5
+CPs=uniroot.all(first,c(-5,5)) # critical points
+CPs # -2.5  2.5
 ```
 
-________________________________________________________________________________________________________
+________________________________________________________________________________
+
 ## Question 9
+
 Evaluate $\frac{dy}{dx}$ at $x = 1$ for the function below.
+
 $$y = -9u^2 + 7u + 4 \text{ where } u = -3x^3  + 3x + 6$$
 
 Chain Rule:
@@ -210,11 +239,14 @@ F4 <- function(x){-18*(-3*x^3  + 3*x + 6)*(-9*x^2  + 3) + (-3*x^3  + 3*x + 6)*(-
 F4(1)
 ```
 
-$\frac{dy}{dx}$ at $x = 1$ is 612
+$$\frac{dy}{dx}\text{ at }x = 1\text{ is 612}$$
 
-________________________________________________________________________________________________________
+________________________________________________________________________________
+
 ## Question 10
+
 Consider the following function:
+
 $$f(x) = (x + 5)(x + 4)^2$$
 
 **Step 1.** Determine $f'(x)$ and $f''(x)$ .  
@@ -230,30 +262,87 @@ $$f'(x) = (x^2 + 8x + 16) + (2x^2 + 18x + 40)$$
 $$f'(x) = 3x^2 + 26x + 56$$
 
 ```{r}
+# Double Check f' with R
 F5 <- function(x){(x + 5)*((x + 4)^2)}
-Deriv(F5)
+FirstDeriv <- Deriv(F5)
+FirstDeriv
 ```
 
 $$f''(x) = 6x + 26$$
 ```{r}
+# Double Check f'' with R
 F6 <- function(x){3*x^2 + 26*x + 56}
-Deriv(F6)
+SecondDeriv <- Deriv(F6)
+SecondDeriv
 ```
 
 **Step 2.** Determine where the function is increasing and decreasing.  Write your answers in interval notation. 
+```{r message=FALSE}
+func <- function(x){(x + 5)*(x + 4)^2} # original function
+s <- seq(-25,25,by=.1)
+a <- func(s)
+datapoints <- cbind(s,a)
+plot(datapoints, type="l", main="Original Function between -25 and 25")
 
+#Find Critical Points
+cp <- uniroot.all(FirstDeriv,c(-25,25))
+cp # -4.000000 -4.666659
 
+# Double Check
+# Find Critical Points:
+# use polyroot function to solve the quadratic equation f' = 0
+polyroot(c(56, 26, 3))
+```
+
+```{r}
+FirstDeriv(-5)
+FirstDeriv(-4.3)
+FirstDeriv(-3)
+```
+
+$f'$ is positive on the interval from $(-\infty, -4.666667)$ so $f(x)$ is increasing.
+
+$f'$ is negative on the interval from $(-4.666667, -4)$ so $f(x)$ is decreasing.
+
+$f'$ is positive on the interval from $(-4, \infty)$ so $f(x)$ is increasing.
 
 **Step 3.** Determine where the function is concave up and concave down.  Write your answers in interval notation. 
 
+```{r message=FALSE}
 
+#Find Inflection Points
+ip <- uniroot.all(SecondDeriv,c(-25,25))
+ip # -4.333333
+
+# Double Check
+# Find Inflection Points:
+# use polyroot function to solve the equation
+polyroot(c(26, 6))
+
+SecondDeriv(-4.6)
+SecondDeriv(-4)
+```
+
+There is only one inflection point at $x = -4.333333$.
+
+$f''$ is negative on the interval from $(-\infty, -4.333333)$ so $f(x)$ is concave down on that interval
+
+$f''$ is positive on the interval from $(-4.333333, \infty)$ so $f(x)$ is concave up on that interval
 
 **Step 4.** Find the x-values of any local minima, maxima, and inflection points.  
 
+There is one inflection point at $x = -4.333333$
 
-________________________________________________________________________________________________________
+$f(x)$ has a critical point and $f'(x)$ changes from positive to negative at $x = -4.666667$, so $f$ has a local maximum at $x = -4.666667$
+
+$f(x)$ has a critical point and $f'(x)$ changes from negative to positive at $x = -4$, so $f$ has a local minimum at $x = -4$
+
+________________________________________________________________________________
+
 ## Question 11
+
 Consider the function:
+
 $$f(x) = -7x^2 - 84x - 140$$
 
 **Step 1.** Find the second derivative of the given function. 
@@ -261,18 +350,73 @@ $$f(x) = -7x^2 - 84x - 140$$
 ```{r}
 F7 <- function(x){-7*x^2 - 84*x - 140}
 F8 <- Deriv(F7)
-Deriv(F8)
+F8
+SecDer <- Deriv(F8)
+SecDer
 ```
 
 **Step 2.** Use the Second Derivative Test to locate any local maximum or minimum points in the graph of the given function.  Express your answer(s) as ordered pairs. 
 
+```{r}
+# Find Critical Points:
+# use polyroot function to solve the f' = 0
+polyroot(c(-84, -14))
+```
 
-________________________________________________________________________________________________________
+```{r}
+F7(-6)
+```
+
+
+Second Derivative Test
+
+The second derivative is a constant at -14, so there is a local maximum at (-6, 112)
+
+```{r}
+func <- function(x){-7*x^2 - 84*x - 140} # original function
+s <- seq(-25,25,by=.1)
+a <- func(s)
+datapoints <- cbind(s,a)
+plot(datapoints, type="l", main="Original Function between -25 and 25")
+
+```
+
+
+________________________________________________________________________________
+
 ## Question 12
+
 A beauty supply store expects to sell 100 flat irons during the next year.  It costs \$1.20 to store one flat iron for one year.  There is a fixed cost of \$15  for each order.  Find the lot size and the number of orders per year that will minimize inventory costs. 
 
-________________________________________________________________________________________________________
+C = 15/L + 1.20 cost to store each item
+T = 15/L * 100 + 1.20(L) TC over one year for 100 items
+
+N = 100/L
+
+```{r}
+#1st and 2d Derivatives
+#Numerically
+
+fx=function(x){(15/x * 100) + 1.20*x}
+s=seq(0,100,by=.1)
+y=fx(s)
+data=cbind(s,y)
+plot(data, type="l", main="Solve for Max between 0 and 100")
+min(y) # 84.85288
+max(y) # Infinity
+first=Deriv(fx)
+y=uniroot.all(first,c(-2,4))
+y # 0
+
+```
+
+### This is definitely not right. I was still working on figuring this one out.  I know I am missing something or my formula is wrong...
+
+
+________________________________________________________________________________
+
 ## Question 13
+
 Find the derivative of the given expression.
 $$y = \frac{18x}{ln(x^4)}$$
 
@@ -281,9 +425,12 @@ F9 <- function(x){18*x/log(x^4)}
 Deriv(F9)
 ```
 
-________________________________________________________________________________________________________
+________________________________________________________________________________
+
 ## Question 14
+
 Consider the following function:
+
 $$f(x) = -5x^3 e^x$$
 
 **Step 1.** Find the first derivative of the above function. 
@@ -299,28 +446,69 @@ F11
 ```{r}
 Deriv(F11)
 ```
-________________________________________________________________________________________________________
+
+________________________________________________________________________________
+
 ## Question 15
+
 Evaluate the definite integral below.  Write your answer in exact form or rounded to two decimal places.
 	
 $$\int_{-3}^{1} \left(8\sqrt[3]{(8x + 5)^2}\right) dx$$
 
+```{r}
+fx=function(x){8*((8*x + 5)^2)^{1/3}}
+I <- integrate(Vectorize(fx),-3,1)
+I
+Num = round(as.double(I[1]),2)
+Num
+```
 
-________________________________________________________________________________________________________
+Double check by finding the antiderivative using substitution
+
+$$\int 8u^{2/3} dx, u = 8x+5$$
+$$\int 8u^{2/3} (\frac{du}{8})$$
+$$\int u^{2/3} du$$
+$$\frac{u^{5/3}}{\frac{5}{3}} du$$
+$$\frac{3}{5}u^{5/3} + C$$
+$$\frac{3}{5}\sqrt[3]{(8x + 5)^5} + C$$
+```{r}
+fx=function(x){(3/5)*((8*x + 5)**(5/3))}
+A = fx(1)
+A
+B = fx(-3)
+B
+A-B
+```
+
+Not sure why the above doesn't work?  When I do the math with my calculator it works fine, and comes out to the same number as was calculated with R above.  124.30 when rounded to two digits.
+________________________________________________________________________________
+
 ## Question 16
+
 Solve the differential equation given below.
+
 $$\frac{dy}{dx} = -4(-3 - y)$$
+
+$$\frac{dy}{dx} = 12 + 4y$$
+
 $$dy = (12 + 4y)dx$$
 
+$$dy = \int12 dx + \int4y dx$$
 
-________________________________________________________________________________________________________
+I really don't know how to solve this one...  Does not seem to be a separable equation and I have searched google like crazy and can't seem to find another example like it.  
+
+________________________________________________________________________________
 ## Question 17
 The marginal cost of a product is given by $238 + \frac{298}{\sqrt x}$ dollars per unit, where $x$ is the number of units produced. The current level of production is 137 units weekly.  If the level of production is increased to 232 units weekly, find the increase in the total costs.  Round your answer to the nearest cent.
 
-________________________________________________________________________________________________________
+$$ \frac{dy}{dx} = 238 + \frac{298}{\sqrt{x}}$$
+
+### Just never got to this one...
+
+________________________________________________________________________________
 ## Question 18
 Find the Taylor polynomial of degree 5 near $x = 1$  for the following function.
 $$y = \sqrt{4x - 3}$$
 
-
+### Didn't even attempt this one.  Would have needed to google Taylor polynomials...
 
